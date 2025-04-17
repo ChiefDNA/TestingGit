@@ -1,0 +1,77 @@
+body {
+    background: url(../images/abstract-kapli-makro-ogni-uzor-razmitost-154099.jpg);
+    display: grid;
+    position: relative;
+    margin: 0;
+    /* grid-template-columns: repeat(auto-fill, 43vw);
+    grid-auto-rows: 22vh;
+    gap: 10px; */
+    color: rgb(241, 240, 255);
+    overflow: hidden;
+    font-size: 20px;
+    font-family:'Times New Roman', Times, serif, Arial, Helvetica, sans-serif;
+}
+body::before {
+    position: absolute;
+    content: "";
+    width: 200%;
+    height: 200%;
+    top: -50vh;
+    left: -50vh;
+    display: block;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.2) 100%);
+    animation: rotategradient 20s infinite;
+}
+p {
+    height: 20vh;
+    width: 40vw;
+    background-color: rgba(225, 245, 220, 0.082);
+    padding: 0px 3px 6px 0px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border: 1px solid rgba(138, 165, 42, 0.288);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(29, 43, 2, 0.308);
+    color: aquamarine;
+    font-family: Arial ;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+p::before {
+    content: "";
+    display: block;
+    width: 40vw;
+    height: 20vh;
+    z-index: 1;
+    position: absolute;
+    background: radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+}
+
+@keyframes rotategradient {
+    0%{
+        transform: rotate(0deg);
+    }
+    15%{
+        transform: rotate(45deg);
+    }
+    45%{
+        transform: rotate(170deg);
+    }
+    75%{
+        transform: rotate(270deg);
+    }
+    90%{
+        transform: rotate(330deg);
+    }
+    95%{
+        transform: rotate(350deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
