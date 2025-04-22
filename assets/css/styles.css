@@ -38,13 +38,12 @@ body::before {
 #paragraphs {
     width: 100%;
     position: relative;
-    display: ruby;
-    /* grid-template-columns: repeat(auto-fill, 43vw);
-    grid-auto-rows: 22vh;
-    gap: 0px; */
+    display: flex;
+    flex-wrap: wrap;
     overflow: visible;
     margin-left: 0px;
     padding-left: 0px;
+    padding-top: 16px;
 }
 p {
     max-height: 139px;
@@ -53,7 +52,7 @@ p {
     min-width: 374px;
     background-color: rgba(225, 245, 220, 0.082);
     padding: 0px 3px 6px 0px;
-    margin: 2px;
+    margin: 2px ;
     border: 1px solid rgba(138, 165, 42, 0.288);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(29, 43, 2, 0.308);
