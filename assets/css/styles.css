@@ -47,7 +47,8 @@ body::before {
     padding-left: 0px;
 }
 p {
-    height: 27vh;
+    max-height: 139px;
+    min-height: 94px;
     width: 40vw;
     min-width: 374px;
     background-color: rgba(225, 245, 220, 0.082);
