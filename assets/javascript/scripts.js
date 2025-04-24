@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded",()=>{
 //     source = document.URL + 'assets/javascript/content.json'
-    fetch('assets/javascript/content.js')
+    fetch('assets/javascript/content.json')
     .then(response => response.json())
     .then(data =>{
         data.forEach(item => {
