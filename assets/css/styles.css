@@ -59,6 +59,96 @@ p {
     justify-content: center;
     text-align: center;
     align-items: center;
+    display: flex;
+    position: relative;
+}
+/* p::before {
+    content: "";
+    display: block;
+    width: 40vw;
+    height: 20vh;
+    z-index: 1;
+    position: absolute;
+    background: radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+} */
+.section {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.301);
+}
+.container {
+    height: 500px;
+    width: 100%;
+    margin: auto;
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+.heading.container {
+    height: 20%;
+}
+.row {
+    width: 400px;
+    margin: auto;
+    margin-top: 0px;
+}
+.form-space {
+    height: 80%;
+    width: 100%;
+}
+.form-boundary {
+    margin: 0px  auto;
+    margin-top: 10px !important;
+    width: 420px;
+    height: 95%;
+    border-radius: 2px;
+    box-shadow: 4px 4px 7px 4px rgba(0,0,0,0.2);
+}
+.form-wrap {
+    height: 100%;
+    width: 97%;
+    margin: 0 auto;
+    padding: 0px;
+}
+.form-wrap h3 {
+    width: 100%;
+    margin-bottom: 1rem;
+    height: 15%;
+    box-sizing: border-box;
+    position: relative;
+}
+.login-form {
+ width: 100%;
+ margin: 0px;
+ height: 85%;
+ position: relative;
+}
+.form-item {
+    height: 25%;
+    width: 100%;
+    position: relative;
+}
+.form-items {
+    width: 98%;
+    height: 75%;
+    border-radius: 30px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.form-items.btn {
+    background-color: rgba(0, 255, 255, 0.185);
+}
+.form-items:focus {
+    background-color: rgba(255, 255, 255, 0);
 }
 
 @keyframes rotategradient {

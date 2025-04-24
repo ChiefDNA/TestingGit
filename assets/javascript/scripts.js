@@ -1,12 +1,30 @@
 document.addEventListener("DOMContentLoaded",()=>{
-    const source = new URL('assets/javascript/content.json', document.URL);
-    fetch(source)
-    .then(response => response.json())
-    .then(data =>{
-        console.log("succesfully proccesed data");
-        data.forEach(item => {
-            document.querySelector('#paragraphs').innerHTML += `<div class="parag"><p>${item.content}</p></div>`
-        });
-    })
-    .catch(error => console.error('Error:', error));
+    
+  document.querySelector('#username').addEventListener('input',replacement);
+  document.querySelector('#password').addEventListener('input',replacement);
+  const form =document.querySelector('#loginform');
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+
+    const username = document.querySelector('#username').value.trim();
+    const password = document.querySelector('#password').value.trim();
+    const remember = form.querySelector('input[type="checkbox"]').checked;
+
+    if (username==="admin" && password==="admin"){
+        alert("Login Successful!");
+        if(remember){
+            localStorage.setItem("username",username);
+        }
+        window.location.href = "index.html";
+    }
+    else {
+        alert("invalid username or password.");
+    }
+  })  
 });
+
+function replacement(event){
+    const input = event.target;
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g,'');
+
+}
