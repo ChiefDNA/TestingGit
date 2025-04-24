@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded",()=>{
     counter = 1;
-    fetch('assets/javascript/content.json')
+    fetch('TestingGit/assets/javascript/content.json')
     .then(response => response.json())
     .then(data =>{
         data.forEach(item => {
