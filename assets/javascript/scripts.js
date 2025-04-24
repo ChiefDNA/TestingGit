@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded",()=>{
         console.log("succesfully called the file",data)
         data.forEach(item => {
             document.querySelector('#paragraphs').innerHTML += `<div class="parag"><p>${item.content}</p></div>`
-            counter++;
         });
     })
     .catch(error => console.error('Error:', error));
-})
+});
+
