@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",()=>{
     source = document.URL + 'assets/javascript/content.json'
+    console.log(source);
+
     fetch(source)
     .then(response => response.json())
     .then(data =>{
@@ -8,6 +10,6 @@ document.addEventListener("DOMContentLoaded",()=>{
             document.querySelector('#paragraphs').innerHTML += `<div class="parag"><p>${item.content}</p></div>`
         });
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.log('Error:', error));
 });
 
