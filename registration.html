@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LogIn</title>
-        <link rel="stylesheet" href="assets/css/styles.css" />
+        <title>New User</title>
+        <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body>
         <section class="section">
             <div class="container" >
-                <div class="heading container">
+                <div class="heading ">
                     <div class="row">
                         <h2>Welcome to TestingGit</h2>
                     </div>
                 </div>
-                <div class="form-space" >
+                <div class="form-space register" >
                     <div class="form-boundary">
                         <div class="form-wrap">
-                            <h3></h3>
-                            <form id="loginform" action="#" class="login-form" >
+                            <h3>Provide Datails Bellow</h3>
+                            <form id="registerForm" action="#" class="register-form" >
                                 <div class="form-item">
                                     <input id="username" type="text" class="form-items" placeholder="Username" required>
+                                </div>
+                                <div class="form-item">
+                                    <input id="contact" type="text" class="form-items" placeholder="Phone\Email" required>
+                                </div>
+                                <div class="form-item">
+                                    <input id="address" type="text" class="form-items" placeholder="Address" required>
+                                </div>
+                                <div class="form-item">
+                                    <input id="dateOfBirth" type="text" class="form-items" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date Of Birth" required>
                                 </div>
                                 <div class="form-item">
                                     <input id="password" type="password" class="form-items" placeholder="Password" required>
                                 </div>
                                 <div class="form-item">
-                                    <button type="submit" class="form-items btn">Log In</button>
+                                    <button type="submit" class="form-items btn">Register Self</button>
                                 </div>
                                 <div class="form-item">
                                     <div class="Tggl-btn" >
