@@ -1,55 +1,64 @@
 body {
-    background: url(../images/abstract-kapli-makro-ogni-uzor-razmitost-154099.jpg);
-    display: grid;
+    display: flex;
     position: relative;
     margin: 0;
-    /* grid-template-columns: repeat(auto-fill, 43vw);
-    grid-auto-rows: 22vh;
-    gap: 10px; */
-    color: rgb(241, 240, 255);
+    color: #000000;
     overflow: hidden;
     font-size: 20px;
     font-family:'Times New Roman', Times, serif, Arial, Helvetica, sans-serif;
 }
-body::before {
-    position: absolute;
-    content: "";
-    width: 200%;
-    height: 200%;
-    top: -50vh;
-    left: -50vh;
+
+#sidePanel {
     display: block;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.2) 100%);
-    animation: rotategradient 20s infinite;
+    position: relative;
+    max-width: 400px;
+    min-width: 200px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.342);
 }
-p {
-    height: 20vh;
+
+#mainPanel {
+    display: grid;
+    position: relative;
+    overflow-y: scroll;
+}
+
+
+#paragraphs {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: visible;
+    margin-left: 0px;
+    padding-left: 100px;
+    margin-left: 0px;
+    padding-top: 16px;
+}
+
+.parag {
+    max-height: 139px;
+    min-height: 94px;
     width: 40vw;
-    background-color: rgba(225, 245, 220, 0.082);
+    min-width: 374px;
+    background-color: #fff;
     padding: 0px 3px 6px 0px;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin: 2px ;
     border: 1px solid rgba(138, 165, 42, 0.288);
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(29, 43, 2, 0.308);
-    color: aquamarine;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    margin-right: 5px;
+    display: flex;
+    position: relative;
+}
+
+p {
     font-family: Arial ;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     align-items: center;
-    display: flex;
-    position: relative;
-}
-p::before {
-    content: "";
-    display: block;
-    width: 40vw;
-    height: 20vh;
-    z-index: 1;
-    position: absolute;
-    background: radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.2) 100%);
-    pointer-events: none;
 }
 
 @keyframes rotategradient {
