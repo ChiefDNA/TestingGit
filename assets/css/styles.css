@@ -147,6 +147,10 @@ p {
     border-radius: 2px;
     box-shadow: 4px 4px 7px 4px rgba(0,0,0,0.2);
 }
+.form-boundary.login {
+    max-height: 500px; 
+    min-width: 555px;
+}
 .form-wrap {
     height: 100%;
     width: 97%;

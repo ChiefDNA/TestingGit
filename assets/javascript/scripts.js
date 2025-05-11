@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   
         const username = userfield.value.trim();
         const password = passwordField.value;
-        const remember = form.querySelector('input[type="checkbox"]').checked;
+        const remember = formLogin.querySelector('input[type="checkbox"]').checked;
         data = {'username':username, 'password':password}
   
         fetch('http://127.0.0.1:8000/accounts/login/',{
