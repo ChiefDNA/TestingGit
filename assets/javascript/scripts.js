@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded",()=>{
     
   const userfield = document.querySelector('#username');
+  const emailRegex = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+  const phoneRegex = /^[0-9]{7,15}$/;
+
 
   //To check if current document accepts data
   if (userfield){
@@ -11,7 +14,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     const DOB = document.querySelector('#dateOfBirth');
     //const button = document.querySelector('.form-items.btn');
     const passwordField = document.querySelector('#password');
-    const form =document.querySelector('#loginform');
+    const formLogin =document.querySelector('#loginform');
+    const formRegister =document.querySelector('#registerForm');
 
     //To remove index file routing on form items
     document.querySelector(".section").addEventListener("click",()=>{window.location.href = "index.html";})
@@ -30,9 +34,14 @@ document.addEventListener("DOMContentLoaded",()=>{
       address.addEventListener('input',(e)=>replacement(e,4));
       DOB.addEventListener('input',(e)=>replacement(e,5));
 
-      form.addEventListener('submit',(e)=>{
+      formRegister.addEventListener('submit',(e)=>{
         e.preventDefault();
-  
+
+        if (!isValidContact(contact.value.trim())) {
+          UserAlert(contact, "Enter a valid phone number or email address");
+          return;
+        }        
+
         data = {
           "username":userfield.value, 
           "contact":contact.value, 
@@ -41,7 +50,7 @@ document.addEventListener("DOMContentLoaded",()=>{
           "password":passwordField.value
         };
 
-        fetch('http://127.0.0.1:8000/accounts/',{
+        fetch('http://127.0.0.1:8000/accounts/user/',{
           method:'POST',
           headers: {
             'Content-Type':'application/json'
@@ -49,13 +58,17 @@ document.addEventListener("DOMContentLoaded",()=>{
           body:JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(data =>console.log(data))
+        .then(data =>{
+          console.log(data);
+          alert("Registration Successful!");
+          window.location.href = "index.html";
+        })
         .catch(error => console.error(error));
       });
   
 
     }else {
-      form.addEventListener('submit',(e)=>{
+      formLogin.addEventListener('submit',(e)=>{
         e.preventDefault();
   
         const username = userfield.value.trim();
@@ -78,7 +91,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
 
+  } 
+  
+  function isValidContact(value) {
+    return emailRegex.test(value) || phoneRegex.test(value);
   }  
+
 });
 
 function replacement(event, pin){
@@ -89,7 +107,7 @@ function replacement(event, pin){
         input.value = input.value.replace(/[^a-zA-Z0-9 ]/g,()=>UserAlert(input));    
         break;
       case 2: //password
-        //input.value = input.value.replace(/[^a-zA-Z0-9]/g,()=>UserAlert(input));    
+        input.value = input.value.replace(/[^a-zA-Z0-9 @.!#$%&*]/g,()=>UserAlert(input));    
         break;
       case 3: //contacts
         input.value = input.value.replace(/[^a-zA-Z0-9.@ ]/g,()=>UserAlert(input));    
@@ -102,14 +120,13 @@ function replacement(event, pin){
         break;    
       default:
         break;
-    }
-    
+    }    
 
 }
-function UserAlert( input){
+function UserAlert( input, msg = "AlphaNumeric characters Only"){
   if (!input.nextElementSibling || !input.nextElementSibling.classList.contains("char-warning")){
     const message = document.createElement("div");
-    message.textContent ="AlphaNumeric characters Only";
+    message.textContent = msg;
     message.className = "char-warning";
     input.parentElement.appendChild(message);
 
