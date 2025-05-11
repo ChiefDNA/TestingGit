@@ -59,11 +59,10 @@ document.addEventListener("DOMContentLoaded",()=>{
         })
         .then(response => response.json())
         .then(data =>{
-          console.log(data);
           alert("Registration Successful!");
           window.location.href = "index.html";
         })
-        .catch(error => console.error(error));
+        .catch(error => alert(error));
       });
   
 
@@ -74,19 +73,24 @@ document.addEventListener("DOMContentLoaded",()=>{
         const username = userfield.value.trim();
         const password = passwordField.value;
         const remember = form.querySelector('input[type="checkbox"]').checked;
+        data = {'username':username, 'password':password}
   
-  
-        //Log in varifying
-        if (username==="admin" && password==="admin"){ 
-            alert("Login Successful!");
+        fetch('http://127.0.0.1:8000/accounts/login/',{
+          method:'POST',
+          headers: {
+            'content-Type':'application/json'
+          },
+          body:JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert("Login Successful!");
             if(remember){
                 localStorage.setItem("username",username);
             }
             window.location.href = "index.html";
-        }
-        else {
-            alert("invalid username or password.");
-        }
+        })
+        .catch(error => alert(error))
       });
     }
 
