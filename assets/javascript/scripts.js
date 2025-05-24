@@ -10,9 +10,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     //login button
     if(document.location.pathname==='/index.html'){
       const login = document.querySelector('.rout-wrap.login a');
-      const add_material_route = document.querySelector('.links-wrap');
+      const route_container = document.querySelector('.links-wrap');
 
-      add_route(add_material_route, 'addMaterials', 'Stock Materials +');
+      add_route(route_container, 'addMaterials', 'Stock Materials +');
+      if (UserAccount.role=='foreman'||UserAccount.role=='admin'){
+        add_route(route_container, 'materials', 'View Materials');
+      }
 
       login.textContent = 'Log Out';
       login.href = '';
@@ -228,8 +231,43 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   }
 
+  if (document.location.pathname==='/materials.html'){
+    const entry_space = document.querySelector('.history .table-entries');
+
+    let histories = []
+
+    table_entries(entry_space, histories,'general');
+
+  }
 
 
+  function table_entries(container, data_store, str){
+    fetch(`http://127.0.0.1:8000/materials/${str}/`,{
+      method:'GET',
+      headers:{
+        'Authorization':`Bearer ${UserAccount.token}`,
+        'Content-Type':'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      data_store = data
+
+      if(data_store.length > 0){
+        data_store.forEach(entry =>{
+          const table_row = document.createElement('tr');
+          Object.values(entry).forEach(item =>{
+            const table_cell = document.createElement('td');
+            table_cell.textContent = item;
+            table_row.appendChild(table_cell)
+          });
+          container.appendChild(table_row);
+        });
+      }
+    })
+    .catch(error => console.error(error))
+
+  }
 
   function input_options(input, options_container, input_btn, options, str){
 
@@ -246,6 +284,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       .then(data => {
         options = data;
       })
+      .catch(error => console(error))
       options_container.innerHTML = '';
 
       if (options.length > 0){
@@ -281,6 +320,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
   
 });
+
 
 
 function add_route( parent_element, special_class, text_value){

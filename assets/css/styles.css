@@ -156,7 +156,7 @@ p {
     padding-top:5px;
     margin-top: 0px;
 }
-.form-space {
+.form-space, .table-space {
     height: 80%;
     width: 100%;
     min-height: 505px;
@@ -165,7 +165,7 @@ p {
     max-height: 700px;
     margin-bottom: 100px;
 }
-.form-boundary {
+.form-boundary, .table-boundary {
     margin: 0px  auto;
     margin-top: 10px !important;
     width: 420px;
@@ -180,11 +180,24 @@ p {
 .form-boundary.add-material {
     max-height: 706px;
 }
-.form-wrap {
-    height: 100%;
+.table-boundary.history {
+    width: auto;
+    max-width: 940px;
+}
+.form-wrap, .table-wrap{
+    height: 99%;
     width: 97%;
     margin: 0 auto;
     padding: 0px;
+}
+.table-wrap {
+    max-height: 706px;
+    overflow-y: scroll;
+    overflow-x: visible;
+    box-sizing: content-box;
+}
+.table-wrap::-webkit-scrollbar {
+    display: none;
 }
 .form-wrap h3 {
     width: 100%;
@@ -194,7 +207,7 @@ p {
     box-sizing: border-box;
     position: relative;
 }
-.login-form, .register-form, .add-mat-form {
+.login-form, .register-form, .add-mat-form, .mat-table {
  width: 100%;
  margin: 0px;
  height: 85%;
@@ -202,6 +215,30 @@ p {
 }
 .register-form {
  overflow-y: scroll;
+}
+.mat-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.mat-table thead tr {
+    background-color: #e4e4dd;
+    margin: 0;
+    position: sticky;
+    top: 5px;
+}
+.mat-table thead tr th {
+    margin: 0;
+    padding: 2px;
+    
+} 
+tbody.table-entries tr:nth-child(even) {
+    background-color: rgba(122, 212, 248, 0.459);
+    max-height: 49px;
+}
+.table-entries tr:nth-child(odd) {
+    border-bottom: 2px solid #463f3f59;
+    max-height: 49px;
+
 }
 .form-item {
     height: 25%;
