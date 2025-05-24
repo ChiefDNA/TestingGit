@@ -159,6 +159,7 @@ p {
 .form-space {
     height: 80%;
     width: 100%;
+    min-height: 505px;
 }
 .form-space.register {
     max-height: 700px;
@@ -176,6 +177,9 @@ p {
     max-height: 500px; 
     min-width: 555px;
 }
+.form-boundary.add-material {
+    max-height: 706px;
+}
 .form-wrap {
     height: 100%;
     width: 97%;
@@ -190,7 +194,7 @@ p {
     box-sizing: border-box;
     position: relative;
 }
-.login-form, .register-form {
+.login-form, .register-form, .add-mat-form {
  width: 100%;
  margin: 0px;
  height: 85%;
@@ -207,7 +211,29 @@ p {
 .form-items-Sw {
     display: none;
 }
-.user-contact {
+.dropdown {
+    background-color: #0000002d;
+    width: calc(100% - 60px);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    overflow-y: scroll;
+    max-height: 100px;
+    justify-self: center;
+    position: relative;
+    z-index: 500;
+}
+.dropdown div {
+    cursor: pointer;
+    border-bottom: 2px solid #fffff059;
+}
+.dropdown div:hover {
+    background-color: #463f3f;
+    color: #ffff;
+}
+.dropdown::-webkit-scrollbar {
+    display: none;
+}
+.quick-btn {
     position: absolute;
     right: 15px; /* Padding from the input edge */
     top: 35%;
@@ -224,11 +250,11 @@ p {
     color: #666;
     z-index: 10;
 }
-.user-contact:hover span {
+.quick-btn:hover span {
     background-color: #628cda31;
     font-size: 3rem;
 }
-.user-contact span {
+.quick-btn span {
     font-size: 2rem;
     height: 100%;
     width: 100%;
@@ -247,6 +273,9 @@ p {
 }
 .register-form .form-item {
     height: 14.3%;
+}
+.add-mat-form .form-item {
+ height: 16.6%;
 }
 .form-items {
     width: 98%;

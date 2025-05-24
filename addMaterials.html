@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Add a New Material</title>
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+    <body>
+        <section class="section">
+            <div class="container">
+                <div class="heading container">
+                    <div class="placing row">
+                        <h2>Add Materials to Stock</h2>
+                    </div>
+                </div>
+                <div class="form-space">
+                    <div class="form-boundary add-material">
+                        <div class="form-wrap">
+                            <h3>Record items as soon as possible</h3>
+                            <form id="add-form" action="#" class="add-mat-form">
+                                <div class="form-item">
+                                    <input id="type" type="text" class="form-items" autocomplete="off" placeholder="Product type" required>
+                                    <div id="type_sugestions" class="dropdown"></div>
+                                    <div class="quick-btn type"><span>+</span></div>
+                                </div>
+                                <div class="form-item">
+                                    <input id="name" type="text" class="form-items" placeholder="Product name" required>
+                                </div>
+                                <div class="form-item">
+                                    <input id="supplier" type="text" class="form-items" autocomplete="off" placeholder="Supplier" required>
+                                    <div id="supplier_sugestions" class="dropdown"></div>
+                                    <div class="quick-btn supplier"><span>+</span></div>
+                                </div>
+                                <div class="form-item">
+                                    <input id="unit_cost" type="number" class="form-items" placeholder="Cost per Item" required>
+                                </div>
+                                <div class="form-item">
+                                    <input id="total_quantity" type="number" class="form-items" placeholder="Number of Items bought" required>
+                                </div>
+                                <div class="form-item">
+                                    <button class="form-items btn" type="submit">Add Record</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="assets/javascript/scripts.js" ></script>
+    </body>
+</html>
