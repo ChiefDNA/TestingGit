@@ -195,6 +195,7 @@ p {
     overflow-y: scroll;
     overflow-x: visible;
     box-sizing: content-box;
+    height: calc(100% - 25px);
 }
 .table-wrap::-webkit-scrollbar {
     display: none;
@@ -239,6 +240,22 @@ tbody.table-entries tr:nth-child(even) {
     border-bottom: 2px solid #463f3f59;
     max-height: 49px;
 
+}
+.table-controls {
+    max-height: 20px;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+.pagination {
+    display: block;
+    float: left;
+    margin: 0 10px;
+}
+.table-controls label {
+    display: block;
+    float: right;
+    margin-right: 10px;
 }
 .form-item {
     height: 25%;

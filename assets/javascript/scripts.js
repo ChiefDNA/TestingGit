@@ -233,15 +233,50 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   if (document.location.pathname==='/materials.html'){
     const entry_space = document.querySelector('.history .table-entries');
+    const page_display = document.querySelector('#page-display');
+    const prev_btn = document.querySelector('#prev-page');
+    const next_btn = document.querySelector('#next-page');
+    const entries_options = document.querySelector('#entries-per-page');
+    const page_jump = document.querySelector('#page-jump');
 
-    let histories = []
+    let histories = [];
+    let current_page = 1;
+    let entries_per_page = 10;
 
-    table_entries(entry_space, histories,'general');
+    const for_history = [entry_space, current_page, entries_per_page, page_display, page_jump, prev_btn, next_btn]
+    table_entries(for_history, histories,'general');
 
+    prev_btn.addEventListener('click', ()=>{
+      if(current_page > 1){
+        current_page --;
+        console.log(histories);
+        tableRender(histories,for_history);
+        paginationControls(histories,for_history);
+      }
+    });
+
+    next_btn.addEventListener('click', ()=>{
+      const total_pages = Math.ceil(histories.length / entries_per_page);
+      if (current_page < total_pages){
+        current_page++;
+        console.log(histories);
+        tableRender(histories,for_history);
+        paginationControls(histories,for_history);        
+      }
+    });
+
+    entries_options.addEventListener('change', ()=>{
+      entries_per_page = parseFloat(entries_per_page.value);
+      current_page = 1;
+      console.log(histories);
+      tableRender(histories,for_history);
+      paginationControls(histories,for_history);
+    });
+    
   }
+  //stuple>>tuple format [container,curent page number, entries per page, paginator, page indicator, previous button, next button ]
 
-
-  function table_entries(container, data_store, str){
+  function table_entries(stuple, data_store, str){
     fetch(`http://127.0.0.1:8000/materials/${str}/`,{
       method:'GET',
       headers:{
@@ -251,19 +286,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     })
     .then(response => response.json())
     .then(data => {
-      data_store = data
-
-      if(data_store.length > 0){
-        data_store.forEach(entry =>{
-          const table_row = document.createElement('tr');
-          Object.values(entry).forEach(item =>{
-            const table_cell = document.createElement('td');
-            table_cell.textContent = item;
-            table_row.appendChild(table_cell)
-          });
-          container.appendChild(table_row);
-        });
-      }
+      data_store = data;
+      stuple[1] = 1;
+      tableRender(data_store, stuple);
+      paginationControls(data_store, stuple);
+      
     })
     .catch(error => console.error(error))
 
@@ -322,6 +349,50 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 
+
+
+
+function paginationControls(list, stuple){
+  const total_pages = Math.ceil(list.length / stuple[2]);
+  const current_page_indicator =stuple[4];
+  current_page_indicator.value = stuple[1];
+  const paginator_display = stuple[3];
+  paginator_display.textContent.split(' ')[3] = `${total_pages}`;
+  
+  for (let i = 1; i <= total_pages; i++){
+    const option = document.createElement('option');
+    option.value= i;
+    option.textContent = `${i}`;
+    if(i ===  current_page_indicator.value) option.selected = true;
+    current_page_indicator.appendChild(option);
+  }
+  const prev_btn = stuple[5];
+  const next_btn = stuple[6];
+  prev_btn.disabled = stuple[1] === 1;
+  next_btn.disabled = stuple[1] === total_pages;
+
+}
+
+function tableRender(list,stuple){
+  const container = stuple[0];
+  container.innerHTML ='';
+  const start = stuple[1] - 1;
+  const end = start + stuple[2];
+  console.log(typeof(list))
+  const visible_data = list.slice(start, end);
+
+  if(visible_data.length > 0){
+    visible_data.forEach(entry =>{
+      const table_row = document.createElement('tr');
+      Object.values(entry).forEach(item =>{
+        const table_cell = document.createElement('td');
+        table_cell.textContent = item;
+        table_row.appendChild(table_cell)
+      });
+      container.appendChild(table_row);
+    });
+  }
+}
 
 function add_route( parent_element, special_class, text_value){
   const div = document.createElement('div');
