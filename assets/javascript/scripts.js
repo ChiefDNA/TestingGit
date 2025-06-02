@@ -1,3 +1,4 @@
+let UserAccount = {}
 document.addEventListener("DOMContentLoaded",()=>{
     
   const emailRegex = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
@@ -232,157 +233,167 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
 
   if (document.location.pathname==='/materials.html'){
-    const entry_space = document.querySelector('.history .table-entries');
-    const page_display = document.querySelector('#page-display');
-    const prev_btn = document.querySelector('#prev-page');
-    const next_btn = document.querySelector('#next-page');
-    const entries_options = document.querySelector('#entries-per-page');
-    const page_jump = document.querySelector('#page-jump');
-
+    const initial_state = {
+      container: document.querySelector('.history .table-entries'),
+      paginatorDisplay: document.querySelector('#page-display'),
+      prevBtn: document.querySelector('#prev-page'),
+      nextBtn: document.querySelector('#next-page'),
+      entriesOptions: document.querySelector('#entries-per-page'),
+      pageJump: document.querySelector('#page-jump'),
+      currentPage: 1,
+      entriesPerPage: 10
+    }
     let histories = [];
-    let current_page = 1;
-    let entries_per_page = 10;
 
-    const for_history = [entry_space, current_page, entries_per_page, page_display, page_jump, prev_btn, next_btn]
-    table_entries(for_history, histories,'general');
 
-    prev_btn.addEventListener('click', ()=>{
-      if(current_page > 1){
-        current_page --;
-        console.log(histories);
-        tableRender(histories,for_history);
-        paginationControls(histories,for_history);
-      }
-    });
-
-    next_btn.addEventListener('click', ()=>{
-      const total_pages = Math.ceil(histories.length / entries_per_page);
-      if (current_page < total_pages){
-        current_page++;
-        console.log(histories);
-        tableRender(histories,for_history);
-        paginationControls(histories,for_history);        
-      }
-    });
-
-    entries_options.addEventListener('change', ()=>{
-      entries_per_page = parseFloat(entries_per_page.value);
-      current_page = 1;
-      console.log(histories);
-      tableRender(histories,for_history);
-      paginationControls(histories,for_history);
-    });
+    table_logic(initial_state, histories, 'general');
     
   }
-  //stuple>>tuple format [container,curent page number, entries per page, paginator, page indicator, previous button, next button ]
-
-  function table_entries(stuple, data_store, str){
-    fetch(`http://127.0.0.1:8000/materials/${str}/`,{
-      method:'GET',
-      headers:{
-        'Authorization':`Bearer ${UserAccount.token}`,
-        'Content-Type':'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      data_store = data;
-      stuple[1] = 1;
-      tableRender(data_store, stuple);
-      paginationControls(data_store, stuple);
-      
-    })
-    .catch(error => console.error(error))
-
-  }
-
-  function input_options(input, options_container, input_btn, options, str){
-
-    input.addEventListener('input', async ()=>{
-      const query = input.value.trim();
-      if (query ===""){
-        options_container.innerHTML = '';
-        input_btn.style.display = 'none';
-        return;
-      }
-
-      fetch(`http://127.0.0.1:8000/materials/${str}/`,{method:'GET',headers:{'Authorization':`Bearer ${UserAccount.token}`,'content-Type':'application/json'}})
-      .then(response => response.json())
-      .then(data => {
-        options = data;
-      })
-      .catch(error => console(error))
-      options_container.innerHTML = '';
-
-      if (options.length > 0){
-        options.forEach(item => {
-          const div = document.createElement('div');
-          div.textContent = item.name;
-          div.onclick = ()=> {
-            input.value = item.name;
-            input.textContent = item.id;
-            options_container.innerHTML = '';
-            input_btn.style.display = 'none';
-          };
-          options_container.appendChild(div);
-        })
-        input_btn.style.display = options_container.textContent.includes(query)? 'none':'flex';
-      } else {
-          input_btn.style.display = 'flex';
-        }
-    });
-    input_btn.addEventListener('click',()=>{
-      const value = input.value
-      if (value==='') return;
-
-      fetch(`http://127.0.0.1:8000/materials/${str}/`,{
-        method: 'POST',
-        headers:{
-          'Content-Type':'application/json',
-          'Authorization': `Bearer ${UserAccount.token}` },
-        body: JSON.stringify({name:value})
-        });
-        input.dispatchEvent(new Event('input'));
-    });
-  }
   
+
 });
 
-
-
-
-
-function paginationControls(list, stuple){
-  const total_pages = Math.ceil(list.length / stuple[2]);
-  const current_page_indicator =stuple[4];
-  current_page_indicator.value = stuple[1];
-  const paginator_display = stuple[3];
-  paginator_display.textContent.split(' ')[3] = `${total_pages}`;
   
-  for (let i = 1; i <= total_pages; i++){
-    const option = document.createElement('option');
-    option.value= i;
-    option.textContent = `${i}`;
-    if(i ===  current_page_indicator.value) option.selected = true;
-    current_page_indicator.appendChild(option);
-  }
-  const prev_btn = stuple[5];
-  const next_btn = stuple[6];
-  prev_btn.disabled = stuple[1] === 1;
-  next_btn.disabled = stuple[1] === total_pages;
+  
+function table_logic(state, dataStore, url){
+    
+  table_entries(state, dataStore,url);
+
+  state.prevBtn.addEventListener('click', ()=>{
+    if(state.currentPage > 1){
+      state.currentPage--;
+      console.log(dataStore.length);
+      tableRender(dataStore,state);
+      paginationControls(dataStore,state);
+    }
+  });
+
+  state.nextBtn.addEventListener('click', ()=>{
+    const totalPages = Math.ceil(dataStore.length / state.entriesPerPage);
+    if (state.currentPage < totalPages){
+      state.currentPage++;
+      console.log(dataStore.length);
+      tableRender(dataStore,state);
+      paginationControls(dataStore,state);        
+    }
+  });
+
+  state.entriesOptions.addEventListener('change', ()=>{
+    state.entriesPerPage = parseFloat(state.entriesOptions.value);
+    state.currentPage = 1;
+    console.log(dataStore);
+    tableRender(dataStore,state);
+    paginationControls(dataStore,state);
+  });
+
+  state.pageJump.addEventListener('change', ()=>{
+    state.currentPage = parseInt(state.pageJump.value);
+    tableRender(dataStore,state);
+    paginationControls(dataStore,state)
+  });
+}
+
+function table_entries(dict, data_store, str){
+  fetch(`http://127.0.0.1:8000/materials/${str}/`,{
+    method:'GET',
+    headers:{
+      'Authorization':`Bearer ${UserAccount.token}`,
+      'Content-Type':'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    data_store.splice(0, data_store.length, ...data);
+    dict.currentPage = 1;
+    tableRender(data_store, dict);
+    paginationControls(data_store, dict);
+    
+  })
+  .catch(error => console.error(error))
 
 }
 
-function tableRender(list,stuple){
-  const container = stuple[0];
-  container.innerHTML ='';
-  const start = stuple[1] - 1;
-  const end = start + stuple[2];
-  console.log(typeof(list))
-  const visible_data = list.slice(start, end);
+function input_options(input, options_container, input_btn, options, str){
 
-  if(visible_data.length > 0){
-    visible_data.forEach(entry =>{
+  input.addEventListener('input', async ()=>{
+    const query = input.value.trim();
+    if (query ===""){
+      options_container.innerHTML = '';
+      input_btn.style.display = 'none';
+      return;
+    }
+
+    fetch(`http://127.0.0.1:8000/materials/${str}/`,{method:'GET',headers:{'Authorization':`Bearer ${UserAccount.token}`,'content-Type':'application/json'}})
+    .then(response => response.json())
+    .then(data => {
+      options = data;
+    })
+    .catch(error => console(error))
+    options_container.innerHTML = '';
+
+    if (options.length > 0){
+      options.forEach(item => {
+        const div = document.createElement('div');
+        div.textContent = item.name;
+        div.onclick = ()=> {
+          input.value = item.name;
+          input.textContent = item.id;
+          options_container.innerHTML = '';
+          input_btn.style.display = 'none';
+        };
+        options_container.appendChild(div);
+      })
+      input_btn.style.display = options_container.textContent.includes(query)? 'none':'flex';
+    } else {
+        input_btn.style.display = 'flex';
+      }
+  });
+  input_btn.addEventListener('click',()=>{
+    const value = input.value
+    if (value==='') return;
+
+    fetch(`http://127.0.0.1:8000/materials/${str}/`,{
+      method: 'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization': `Bearer ${UserAccount.token}` },
+      body: JSON.stringify({name:value})
+      });
+      input.dispatchEvent(new Event('input'));
+  });
+}
+
+function paginationControls(list, dict){
+  const totalPages = Math.ceil(list.length / dict.entriesPerPage);
+  
+  dict.paginatorDisplay.querySelector('span').textContent = `${totalPages}`;
+      dict.pageJump.textContent = dict.currentPage;
+  
+  dict.pageJump.innerHTML = ''
+  for (let i = 1; i <= totalPages; i++){
+    const option = document.createElement('option');
+    option.value= i;
+    option.textContent = i;
+    console.log(i)
+    if(i ===  dict.currentPage) option.selected = true;
+    dict.pageJump.appendChild(option);
+  }
+
+  dict.prevBtn.disabled = dict.currentPage === 1;
+  dict.nextBtn.disabled = dict.currentPage === totalPages;
+
+}
+
+function tableRender(list, dict){
+  const container = dict.container;
+  container.innerHTML ='';
+  const start = (dict.currentPage - 1) * dict.entriesPerPage;
+  const end = start + dict.entriesPerPage;
+  console.log(start)
+  const visibleData = list.slice(start, end);
+
+  if(visibleData.length > 0){
+    visibleData.forEach(entry =>{
       const table_row = document.createElement('tr');
       Object.values(entry).forEach(item =>{
         const table_cell = document.createElement('td');
