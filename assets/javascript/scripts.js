@@ -1,5 +1,37 @@
 let UserAccount = {}
+
 document.addEventListener("DOMContentLoaded",()=>{
+ 
+  document.querySelector('#sidePanel').innerHTML = `
+    <div class="links-wrap">
+      <div class="nav-group navigation">
+          <h5>Navigation</h5>
+          <hr>
+          <div class="rout-wrap home">
+              <a href="index.html"><span><img id="home" src="icon.png">Home</span></a>
+          </div>
+      </div>
+      <div class="nav-group site-tracker-tools">
+          <h5>Tracking Tools</h5>
+          <hr>
+
+      </div>
+      <div class="nav-group manager-tools">
+          <h5>Manager Tools</h5>
+          <hr>
+      </div>
+      <div class="nav-group my-account">
+          <h5>Accounts</h5>
+          <hr>
+          <div class="rout-wrap login">
+              <a href="login.html"><span><img id="login" src="icon.png">Log In</span></a>
+          </div>
+          <div class="rout-wrap register">
+              <a href="registration.html"><span><img id="register" src="icon.png">New User</span></a>
+          </div>
+      </div>
+    </div>
+  `;
     
   const emailRegex = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
   const phoneRegex = /^[0-9]{7,15}$/;
@@ -8,49 +40,55 @@ document.addEventListener("DOMContentLoaded",()=>{
   UserAccount = localStorage.getItem("TestingGit");
   if (UserAccount){
     UserAccount = JSON.parse(UserAccount)
-    //login button
-    if(document.location.pathname==='/index.html'){
-      const login = document.querySelector('.rout-wrap.login a');
-      const route_container = document.querySelector('.links-wrap');
+    const route_to = {
+      navigtion: document.querySelector('.nav-group.navigation'),
+      tracking: document.querySelector('.nav-group.site-tracker-tools'),
+      managing: document.querySelector('.nav-group.manager-tools'),
+      accounts: document.querySelector('.nav-group.my-account')
+    };
 
-      add_route(route_container, 'addMaterials', 'Stock Materials +');
-      if (UserAccount.role=='foreman'||UserAccount.role=='admin'){
-        add_route(route_container, 'materials', 'View Materials');
-      }
-
-      login.textContent = 'Log Out';
-      login.href = '';
-      //user identifier bunner
-      const banner = document.querySelector('.banner');
-      const nameBanner = document.createElement('ul');
-      const idBanner = document.createElement('ul');
-
-      nameBanner.textContent = 'Welcome Back '+UserAccount.username;
-      idBanner.textContent = 'User Id '+UserAccount.userId;
-
-      banner.appendChild(nameBanner);
-      banner.appendChild(idBanner);
-      banner.classList.add('occupied');
-
-      login.addEventListener('click',(e)=>{
-        login.textContent = 'Log In';
-        login.href = 'login.html';
-        banner.innerHtml = '';
-        banner.classList.remove('occupied');
-        localStorage.clear('TestingGit');
-      });
+    
+    add_route(route_to.tracking, 'addMaterials', 'Stock Materials +');
+    if (UserAccount.role=='foreman'||UserAccount.role=='admin'){
+      add_route(route_to.managing, 'materials', 'View Materials');
+    } else {
+      route_to.tracking.classList.add('hidden');
+      route_to.managing.classList.add('hidden');
     }
+
+    const login = document.querySelector('.rout-wrap.login a');
+    login.innerHTML = `<img id="login" src="icon.png">Log Out`;
+    login.href = 'index.html';
+
+    login.addEventListener('click',(e)=>{
+      login.innerHTML = `<img id="login" src="icon.png">Log In`;
+      login.href = 'login.html';
+      localStorage.clear('TestingGit');
+    });
+
+    
   }
 
+  if(document.location.pathname==='/index.html'){
+    document.querySelector('.rout-wrap.home').classList.add('no-display');
+    
+    //user identifier bunner
+    // const banner = document.querySelector('.banner');
+    // const nameBanner = document.createElement('ul');
+    // const idBanner = document.createElement('ul');
+
+    // nameBanner.textContent = 'Welcome Back '+UserAccount.username;
+    // idBanner.textContent = 'User Id '+UserAccount.userId;
+
+    // banner.appendChild(nameBanner);
+    // banner.appendChild(idBanner);
+    // banner.classList.add('occupied');
+  }
 
   // login logic
   if (document.location.pathname==='/login.html'){
-    //exit on clicking ouside form
-    document.querySelector(".section").addEventListener("click",()=>{window.location.href = "index.html";})
-    document.querySelectorAll(".form-boundary, .row").forEach(element =>{
-      element.addEventListener("click",(e)=>e.stopPropagation());
-    });
-
+    
+    document.querySelector('.rout-wrap.login').classList.add('no-display');
     const contact = document.querySelector('#contact');
     const userfield = document.querySelector('#username');
     const passwordField = document.querySelector('#password');
@@ -114,11 +152,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   //To check if current document accepts data
   if (document.location.pathname==='/registration.html'){
-    //exit to index file on clicking outside the form
-    document.querySelector(".section").addEventListener("click",()=>{window.location.href = "index.html";})
-    document.querySelectorAll(".form-boundary, .row").forEach(element =>{
-      element.addEventListener("click",(e)=>e.stopPropagation());
-    });
+    
+    document.querySelector('.rout-wrap.register').classList.add('no-display');
 
     //Select form fields
     const contact = document.querySelector('#contact');
@@ -169,6 +204,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   } 
 
   if (document.location.pathname==='/addMaterials.html'){
+    document.querySelector('.rout-wrap.addMaterials').classList.add('no-display');
     const type = document.querySelector('#type');
     const supplier = document.querySelector('#supplier');
     const type_sugestions = document.querySelector('#type_sugestions');
@@ -180,10 +216,10 @@ document.addEventListener("DOMContentLoaded",()=>{
     const total_quantity = document.querySelector('#total_quantity');
     const form_add_material = document.querySelector('#add-form');
     
-    document.querySelector(".section").addEventListener("click",()=>{window.location.href = "index.html";})
-    document.querySelectorAll(".form-boundary, .row").forEach(element =>{
-      element.addEventListener("click",(e)=>e.stopPropagation());
-    });
+    // document.querySelector(".section").addEventListener("click",()=>{window.location.href = "index.html";})
+    // document.querySelectorAll(".form-boundary, .row").forEach(element =>{
+    //   element.addEventListener("click",(e)=>e.stopPropagation());
+    // });
 
     let sugest_type = [];
     let sugest_suppier = [];
@@ -233,6 +269,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
 
   if (document.location.pathname==='/materials.html'){
+    document.querySelector('.rout-wrap.materials').classList.add('no-display');
     const initial_state = {
       container: document.querySelector('.history .table-entries'),
       paginatorDisplay: document.querySelector('#page-display'),
@@ -251,6 +288,18 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
   
 
+
+  const navGroups = document.querySelectorAll('div.nav-group');
+  navGroups.forEach(nav_group =>{
+    const innerDivs = nav_group.querySelectorAll('div.rout-wrap');
+    // const hasVisibleChild = Array.from(innerDivs).some(div => !div.classList.contains('no-display'));
+    // if(!hasVisibleChild){
+    if(innerDivs.length === 0) {
+      nav_group.classList.add('hidden');
+    } else {
+      nav_group.classList.remove('hidden');
+    }
+  });
 });
 
   
@@ -409,8 +458,8 @@ function add_route( parent_element, special_class, text_value){
   const div = document.createElement('div');
   const link = document.createElement('a');
   const span = document.createElement('span');
-   
-  span.textContent = text_value;
+  
+  span.innerHTML =`<img id="${special_class}" src="icon.png"> ${text_value}`;
   link.href = `${special_class}.html`;
   div.classList = `rout-wrap ${special_class}`;
 

@@ -3,7 +3,7 @@ body {
     position: relative;
     margin: 0;
     color: #000000;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     font-size: 20px;
     font-family:'Times New Roman', Times, serif, Arial, Helvetica, sans-serif;
 }
@@ -16,6 +16,9 @@ body {
     align-content: center;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.342);
+    border-top-left-radius: 26px;
+    border-bottom-left-radius: 31px;
+    margin: 2px 0 2px 2px;
 }
 
 #mainPanel {
@@ -88,16 +91,14 @@ p {
     display: flex;
     position: relative;
 }
-/* p::before {
-    content: "";
-    display: block;
-    width: 40vw;
-    height: 20vh;
-    z-index: 1;
-    position: absolute;
-    background: radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.2) 100%);
-    pointer-events: none;
-} */
+.no-display:visited {
+    color: #e4e4dd;
+    /* display: none !important; */
+}
+.hidden {
+    visibility: hidden !important;
+}
+
  .links-wrap {
     height: 80%;
     width: 100%;
@@ -105,32 +106,77 @@ p {
     text-align: center;
     align-content: baseline;
     margin: auto;
+    display: flexbox;
     position: relative;
  }
- .rout-wrap {
+.nav-group h5{
+    margin-bottom: 0;
+    height: 3px;
+    padding-bottom: 2px;
+    color: #ffffff69;
+    font-size: 13px;
+}
+.nav-group {
+    margin: auto 5px;
+    width: 168px;
+    position: relative;
+    margin-top: 40%;
+    justify-self: center;
+}
+.nav-group hr {
     width: 80%;
+}
+
+.rout-wrap {
+    width: 100%;
     height: 30px;
     border: 1px solid #00000001;
-    border-radius: 15px;
     box-sizing: border-box;
-    box-shadow: 0 3px  3px rgba(0, 0, 0, 0.2);
     margin: auto;
     margin-bottom: 16px;
     padding-top: 5px;   
- }
- .rout-wrap span, .rout-wrap a {
+    background-color: #0000000a;
+}
+.rout-wrap span, .rout-wrap a {
     text-decoration: none;
     width: 100%;
     height: 100%;
     margin: 0px;
     display: inherit;
- }
+}
+#home, #login, #register, #addMaterials, #materials {
+    float: left;
+    content: '';
+    margin-top: 0px;
+    width: 23px;
+    height: 28px;
+    background-image: url('/assets/images/web-navigation-icon-pack-vector.png');
+}
+#home {
+    background-position: -11px -8px;
+}
+#login {
+    background-position: -108px -8px;
+}
+#register {
+    background-position: -59px -8px;
+}
+#addMaterials {
+    background-position: -11px -59px;
+}
+#materials {
+    background-position: -59px -59px;
+}
 .section {
     height: 100vh;
     width: 100vw;
     padding: 0;
     margin: 0;
+    overflow-y: scroll;
     /* background-color: rgba(0, 0, 0, 0.301); */
+}
+.section::-webkit-scrollbar {
+    display: none;
 }
 .container {
     width: 100%;
@@ -182,7 +228,7 @@ p {
 }
 .table-boundary.history {
     width: auto;
-    max-width: 940px;
+    max-width: 1220px;
 }
 .form-wrap, .table-wrap{
     height: 99%;
