@@ -447,7 +447,14 @@ tbody.table-entries tr:nth-child(even) {
     position: absolute;
     animation: fadeout 2s forwards;
 }
-
+.construction-bg {
+    background: url('/assets/images/construction.png') no-repeat center;
+    background-size: contain;
+}
+.materials-bg {
+    background: url('/assets/images/materials.png') no-repeat center;
+    background-size: contain;
+}
 @keyframes fadeout {
     0% {opacity: 1;}
     90% {opacity: 1;}

@@ -72,17 +72,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.location.pathname==='/index.html'){
     document.querySelector('.rout-wrap.home').classList.add('no-display');
     
-    //user identifier bunner
-    // const banner = document.querySelector('.banner');
-    // const nameBanner = document.createElement('ul');
-    // const idBanner = document.createElement('ul');
-
-    // nameBanner.textContent = 'Welcome Back '+UserAccount.username;
-    // idBanner.textContent = 'User Id '+UserAccount.userId;
-
-    // banner.appendChild(nameBanner);
-    // banner.appendChild(idBanner);
-    // banner.classList.add('occupied');
   }
 
   // login logic
@@ -154,7 +143,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   if (document.location.pathname==='/registration.html'){
     
     document.querySelector('.rout-wrap.register').classList.add('no-display');
-
+    document.querySelector('div.heading').classList.add('construction-bg');
     //Select form fields
     const contact = document.querySelector('#contact');
     const address = document.querySelector('#address');
@@ -205,6 +194,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   if (document.location.pathname==='/addMaterials.html'){
     document.querySelector('.rout-wrap.addMaterials').classList.add('no-display');
+    document.querySelector('div.heading').classList.add('materials-bg');
     const type = document.querySelector('#type');
     const supplier = document.querySelector('#supplier');
     const type_sugestions = document.querySelector('#type_sugestions');
