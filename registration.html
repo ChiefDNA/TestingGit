@@ -19,20 +19,29 @@
                         <div class="form-wrap">
                             <h3>Provide Datails Bellow</h3>
                             <form id="registerForm" action="#" class="register-form" >
-                                <div class="form-item">
-                                    <input id="username" type="text" class="form-items" placeholder="Username" required>
+                                <div class="form-item lbl">
+                                    <label id="user_info" >Personal Details:</label>
+                                </div>
+                                <div class="form-item short">
+                                    <input id="username" type="text" class="form-items" aria-labelledby="user_info" placeholder="Username" required>
+                                </div>
+                                <div class="form-item long">
+                                    <input id="dateOfBirth" type="text" class="form-items" onfocus="(this.type='date')" onblur="(this.type='text')" aria-labelledby="user_info" placeholder="Date Of Birth" required>
+                                </div>
+                                <div class="form-item lbl">
+                                    <label id="temporay-info" >Reach-out Details:</label>
+                                </div>
+                                <div class="form-item long">
+                                    <input id="contact" type="text" class="form-items" aria-labelledby="temporay-info" placeholder="Phone\Email" required>
+                                </div>
+                                <div class="form-item short">
+                                    <input id="address" type="text" class="form-items" aria-labelledby="temporay-info" placeholder="Address" required>
+                                </div>
+                                <div class="form-item lbl">
+                                    <label id="psswrd" >Create a strong password:</label>
                                 </div>
                                 <div class="form-item">
-                                    <input id="contact" type="text" class="form-items" placeholder="Phone\Email" required>
-                                </div>
-                                <div class="form-item">
-                                    <input id="address" type="text" class="form-items" placeholder="Address" required>
-                                </div>
-                                <div class="form-item">
-                                    <input id="dateOfBirth" type="text" class="form-items" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date Of Birth" required>
-                                </div>
-                                <div class="form-item">
-                                    <input id="password" type="password" class="form-items" placeholder="Password" required>
+                                    <input id="password" type="password" class="form-items" aria-labelledby="psswrd" placeholder="Password" required>
                                 </div>
                                 <div class="form-item">
                                     <button type="submit" class="form-items btn">Register Self</button>

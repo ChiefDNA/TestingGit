@@ -208,7 +208,7 @@ p {
     min-height: 505px;
 }
 .form-space.register {
-    max-height: 700px;
+    max-height: 710px;
     margin-bottom: 100px;
 }
 .form-boundary, .table-boundary {
@@ -217,14 +217,15 @@ p {
     width: 420px;
     height: 95%;
     border-radius: 2px;
-    box-shadow: 4px 4px 7px 4px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.02);
 }
 .form-boundary.login {
     max-height: 500px; 
     min-width: 555px;
 }
-.form-boundary.add-material {
+.form-boundary.add-material, .register .form-boundary {
     max-height: 706px;
+    width: auto;
 }
 .table-boundary.history {
     width: auto;
@@ -259,9 +260,13 @@ p {
  margin: 0px;
  height: 85%;
  position: relative;
+ text-align: left;
 }
 .register-form {
  overflow-y: scroll;
+}
+.register-form::-webkit-scrollbar {
+    display: none;
 }
 .mat-table {
     border-collapse: collapse;
@@ -338,6 +343,7 @@ tbody.table-entries tr:nth-child(even) {
     position: absolute;
     right: 15px; /* Padding from the input edge */
     top: 35%;
+    align-self: anchor-center;
     transform: translateY(-50%);
     width: 80px;
     height: 60%;
@@ -352,7 +358,7 @@ tbody.table-entries tr:nth-child(even) {
     z-index: 10;
 }
 .quick-btn:hover span {
-    background-color: #628cda31;
+    background-color: #62da9831;
     font-size: 3rem;
 }
 .quick-btn span {
@@ -365,12 +371,14 @@ tbody.table-entries tr:nth-child(even) {
     justify-content: center;
     align-items: center;
     padding: 4px 10px;
-    border-top-right-radius: 27px;
-    border-bottom-right-radius: 27px;
     transition: background-color 0.2s ease;
     color: #000000;
     margin: 0;
     display: flex;
+}
+.login-form .quick-btn span {
+    border-top-right-radius: 27px;
+    border-bottom-right-radius: 27px;
 }
 .register-form .form-item {
     height: 14.3%;
@@ -381,6 +389,7 @@ tbody.table-entries tr:nth-child(even) {
 .form-items {
     width: 98%;
     height: 75%;
+    max-height: 73px;
     border-radius: 30px;
     box-sizing: border-box;
     padding: 10px;
@@ -390,11 +399,40 @@ tbody.table-entries tr:nth-child(even) {
     color: #463f3f;
     background-color: rgba(255, 255, 255, 0.1);
 }
+.add-mat-form .form-items, .register-form .form-items {
+    border-radius: 0px;
+    border: none;
+    border-bottom: 2px solid #45c12f5c !important;
+}
+.form-item.short {
+    min-width: 100px; 
+    max-width: 615px; 
+    width: 38%; 
+    display: inline-block;
+}
+.form-item.long {
+    min-width: 100px; 
+    max-width: 963px; 
+    width:60%; margin:0px;
+    display: inline-block;
+}
+.form-item.lbl {
+    margin: 12px;
+    height: 24px;
+}
+
 .form-items.btn {
-    background-color: rgba(0, 255, 255, 0.185);
+    background-color: #45c12f7c;
 }
 .form-items:focus {
-    background-color: rgba(255, 255, 255, 0);
+    border-bottom: 4px solid #45c12f5c !important;
+    outline: none;
+    background-color: #45c12f18;
+}
+.form-item.lbl label {
+    width: 200px;
+    border:none;
+    height:20px
 }
 .char-warning {
     color: #fff;

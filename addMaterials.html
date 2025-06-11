@@ -19,24 +19,34 @@
                         <div class="form-wrap">
                             <h3>Record items as soon as possible</h3>
                             <form id="add-form" action="#" class="add-mat-form">
-                                <div class="form-item">
-                                    <input id="type" type="text" class="form-items" autocomplete="off" placeholder="Product type" required>
-                                    <div id="type_sugestions" class="dropdown"></div>
-                                    <div class="quick-btn type"><span>+</span></div>
+                                <div class="form-item lbl">
+                                    <label id="sources">Supplier name:</label>
+                                    <span style="float: right;margin-right: 47px;font-size: 17px;">Click at end to add new supplier if not in list</span>
                                 </div>
                                 <div class="form-item">
-                                    <input id="name" type="text" class="form-items" placeholder="Product name" required>
-                                </div>
-                                <div class="form-item">
-                                    <input id="supplier" type="text" class="form-items" autocomplete="off" placeholder="Supplier" required>
+                                    <input id="supplier" type="text" class="form-items" autocomplete="off" aria-labelledby="sources" placeholder="Supplier" required>
                                     <div id="supplier_sugestions" class="dropdown"></div>
                                     <div class="quick-btn supplier"><span>+</span></div>
                                 </div>
-                                <div class="form-item">
-                                    <input id="unit_cost" type="number" class="form-items" placeholder="Cost per Item" required>
+                                <div style="margin: 12px;height: 24px;" class="form-item">
+                                    <label id="products">Product:</label>
                                 </div>
-                                <div class="form-item">
-                                    <input id="total_quantity" type="number" class="form-items" placeholder="Number of Items bought" required>
+                                <div class="form-item short">
+                                    <input id="type" type="text" class="form-items" autocomplete="off" aria-labelledby="products" placeholder="Product type" required>
+                                    <div id="type_sugestions" class="dropdown"></div>
+                                    <div class="quick-btn type"><span>+</span></div>
+                                </div>
+                                <div style="float: inline-end;" class="form-item long">
+                                    <input id="name" type="text" class="form-items" aria-labelledby="products" placeholder="Product name" required>                                    
+                                </div>
+                                <div class="form-item lbl">
+                                    <label id="details">Purchase details:</label>
+                                </div>
+                                <div class="form-item long">
+                                    <input id="unit_cost" type="number" class="form-items" aria-labelledby="details" placeholder="Cost per Item" required>
+                                </div>
+                                <div class="form-item short">
+                                    <input id="total_quantity" type="number" class="form-items" aria-labelledby="details" placeholder="Number of Items bought" required>
                                 </div>
                                 <div class="form-item">
                                     <button class="form-items btn" type="submit">Add Record</button>
