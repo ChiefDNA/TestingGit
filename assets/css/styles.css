@@ -250,8 +250,10 @@ p {
 .form-wrap h3 {
     width: 100%;
     padding-top: 10px;
+    padding-left: 30px;
     margin-bottom: 1rem;
-    height: 12%;
+    text-align: justify;
+    height: 7%;
     box-sizing: border-box;
     position: relative;
 }
@@ -447,11 +449,16 @@ tbody.table-entries tr:nth-child(even) {
     position: absolute;
     animation: fadeout 2s forwards;
 }
-.construction-bg {
+.placing.row {
+    background-color: #ffffff87;
+}
+.construction-bg{
+    content: '';
     background: url('/assets/images/construction.png') no-repeat center;
     background-size: contain;
 }
 .materials-bg {
+    content: '';
     background: url('/assets/images/materials.png') no-repeat center;
     background-size: contain;
 }
