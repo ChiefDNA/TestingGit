@@ -15,7 +15,7 @@ body {
     min-width: 200px;
     align-content: center;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.342);
+    background-color: #00000014;
     border-top-left-radius: 26px;
     border-bottom-left-radius: 31px;
     margin: 2px 0 2px 2px;
@@ -98,30 +98,63 @@ p {
 .hidden {
     visibility: hidden !important;
 }
-
- .links-wrap {
-    height: 80%;
+.links-wrap, .page-icon {
+    height: 85%;
     width: 100%;
     align-items: center;
     text-align: center;
     align-content: baseline;
     margin: auto;
-    display: flexbox;
+    display: block;
     position: relative;
  }
+.page-icon {
+    height: 15%;
+    max-height: 90px;
+    min-height: 60px;
+    margin: auto;
+}
+a.icon {
+    text-decoration: none;
+    height: 100%;
+    justify-self: center;
+    display: flex;
+    position: relative;
+}
+a.icon h3 {
+    font-weight: bolder;
+}
+a.icon h3 span {
+    font-weight:lighter;
+    font-size: smaller;
+    margin-top: 0px;
+}
+#icon {
+    background: url('/assets/images/logo.png') no-repeat center;
+    background-size: contain;
+    height: 58px !important;
+    margin: auto;
+    width: 58px;
+    border-radius: 50%;
+    height: 70%;
+}
 .nav-group h5{
     margin-bottom: 0;
     height: 3px;
     padding-bottom: 2px;
-    color: #ffffff69;
+    color: #e9dfdfa1;
     font-size: 13px;
 }
-.nav-group {
+.nav-group, .nav-group-title {
     margin: auto 5px;
     width: 168px;
     position: relative;
-    margin-top: 40%;
     justify-self: center;
+}
+.nav-group.my-account {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
 }
 .nav-group hr {
     width: 80%;
@@ -133,9 +166,9 @@ p {
     border: 1px solid #00000001;
     box-sizing: border-box;
     margin: auto;
-    margin-bottom: 16px;
+    margin-bottom: 2px;
     padding-top: 5px;   
-    background-color: #0000000a;
+    
 }
 .rout-wrap span, .rout-wrap a {
     text-decoration: none;
@@ -144,10 +177,18 @@ p {
     margin: 0px;
     display: inherit;
 }
+.rout-wrap a span {
+    text-align: left;
+}
+
+.rout-wrap:hover, .rout-wrap:active {
+    background-color: #0000000a;
+}
 #home, #login, #register, #addMaterials, #materials {
     float: left;
     content: '';
     margin-top: 0px;
+    margin-right: 5px;
     width: 23px;
     height: 28px;
     background-image: url('/assets/images/web-navigation-icon-pack-vector.png');
@@ -250,8 +291,10 @@ p {
 .form-wrap h3 {
     width: 100%;
     padding-top: 10px;
+    padding-left: 30px;
+    text-align: left;
     margin-bottom: 1rem;
-    height: 12%;
+    height: 7%;
     box-sizing: border-box;
     position: relative;
 }

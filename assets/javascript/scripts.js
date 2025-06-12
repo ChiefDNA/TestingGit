@@ -3,12 +3,20 @@ let UserAccount = {}
 document.addEventListener("DOMContentLoaded",()=>{
  
   document.querySelector('#sidePanel').innerHTML = `
+    <div class="page-icon">
+      <div class="nav-group-title">
+        <a href="index.html" class="icon">
+          <img id="icon" src="icon.png">
+          <h3>Tuzimbe<br><span>constructions</span></h3>
+        </a>
+      </div>
+    </div>
     <div class="links-wrap">
       <div class="nav-group navigation">
           <h5>Navigation</h5>
           <hr>
           <div class="rout-wrap home">
-              <a href="index.html"><span><img id="home" src="icon.png">Home</span></a>
+              <a href="index.html"><img id="home" src="icon.png"><span>Home</span></a>
           </div>
       </div>
       <div class="nav-group site-tracker-tools">
@@ -24,10 +32,10 @@ document.addEventListener("DOMContentLoaded",()=>{
           <h5>Accounts</h5>
           <hr>
           <div class="rout-wrap login">
-              <a href="login.html"><span><img id="login" src="icon.png">Log In</span></a>
+              <a href="login.html"><img id="login" src="icon.png"><span>Log In</span></a>
           </div>
           <div class="rout-wrap register">
-              <a href="registration.html"><span><img id="register" src="icon.png">New User</span></a>
+              <a href="registration.html"><img id="register" src="icon.png"><span>New User</span></a>
           </div>
       </div>
     </div>
@@ -71,18 +79,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   if(document.location.pathname==='/index.html'){
     document.querySelector('.rout-wrap.home').classList.add('no-display');
-    
-    //user identifier bunner
-    // const banner = document.querySelector('.banner');
-    // const nameBanner = document.createElement('ul');
-    // const idBanner = document.createElement('ul');
 
-    // nameBanner.textContent = 'Welcome Back '+UserAccount.username;
-    // idBanner.textContent = 'User Id '+UserAccount.userId;
-
-    // banner.appendChild(nameBanner);
-    // banner.appendChild(idBanner);
-    // banner.classList.add('occupied');
   }
 
   // login logic
@@ -162,6 +159,17 @@ document.addEventListener("DOMContentLoaded",()=>{
     const DOB = document.querySelector('#dateOfBirth');
     const passwordField = document.querySelector('#password');
     const formRegister =document.querySelector('#registerForm');
+    
+    const short_inputs = document.querySelectorAll('.form-item.short')
+    const long_inputs = document.querySelectorAll('.form-item.long')
+    
+    window.addEventListener("resize",()=>{
+      responsiveClasses(short_inputs, 'short', 500, '#registerForm');
+      responsiveClasses(long_inputs, 'long', 500, '#registerForm');
+    });
+    
+    responsiveClasses(short_inputs, 'short', 500, '#registerForm');
+    responsiveClasses(long_inputs, 'long', 500, '#registerForm');
 
     // field input listeners
     passwordField.addEventListener('input',(e)=>replacement(e,2));
@@ -215,11 +223,17 @@ document.addEventListener("DOMContentLoaded",()=>{
     const unit_cost = document.querySelector('#unit_cost');
     const total_quantity = document.querySelector('#total_quantity');
     const form_add_material = document.querySelector('#add-form');
+
+    const short_inputs = document.querySelectorAll('.form-item.short')
+    const long_inputs = document.querySelectorAll('.form-item.long')
     
-    // document.querySelector(".section").addEventListener("click",()=>{window.location.href = "index.html";})
-    // document.querySelectorAll(".form-boundary, .row").forEach(element =>{
-    //   element.addEventListener("click",(e)=>e.stopPropagation());
-    // });
+    window.addEventListener("resize",()=>{
+      responsiveClasses(short_inputs, 'short', 500, '#add-form');
+      responsiveClasses(long_inputs, 'long', 500, '#add-form');
+    });
+    
+    responsiveClasses(short_inputs, 'short', 500, '#add-form');
+    responsiveClasses(long_inputs, 'long', 500, '#add-form');
 
     let sugest_type = [];
     let sugest_suppier = [];
@@ -302,7 +316,24 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
 });
 
-  
+
+
+function responsiveClasses(list, str, number, selector){
+  const container = document.querySelector(selector);
+  if (container.offsetWidth <= number){
+    list.forEach(item =>{
+      if(item.classList.contains(str)){
+        item.classList.remove(str);
+      }
+    })
+  }else {
+    list.forEach(item => {
+      if (!item.classList.contains(str)){
+        item.classList.add(str)
+      }
+    })
+  }
+}
   
 function table_logic(state, dataStore, url){
     
@@ -459,7 +490,8 @@ function add_route( parent_element, special_class, text_value){
   const link = document.createElement('a');
   const span = document.createElement('span');
   
-  span.innerHTML =`<img id="${special_class}" src="icon.png"> ${text_value}`;
+  link.innerHTML =`<img id="${special_class}" src="icon.png">`;
+  span.textContent = text_value;
   link.href = `${special_class}.html`;
   div.classList = `rout-wrap ${special_class}`;
 
