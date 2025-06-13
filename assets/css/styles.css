@@ -27,6 +27,7 @@ body {
 }
 #sidePanel.responsive-focused {
     position: fixed;
+    left: 2px;
     background-color: #f1f1f1;
     z-index: 1;
 }
@@ -267,13 +268,18 @@ a.icon h3 span {
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative
+    position: relative;
+    display: flex;
 }
 .row {
-    width: 400px;
+    width: 60%;
     margin: auto;
+    height: 50%;
     padding-top:5px;
-    margin-top: 0px;
+    font-size: larger;
+}
+.row h2 {
+    font-size: 185%;
 }
 .form-space, .table-space {
     height: 80%;
@@ -281,7 +287,7 @@ a.icon h3 span {
     min-height: 505px;
 }
 .form-space.register {
-    max-height: 710px;
+    /* max-height: 710px; */
     margin-bottom: 100px;
 }
 .form-boundary, .table-boundary {
@@ -293,11 +299,11 @@ a.icon h3 span {
     box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.02);
 }
 .form-boundary.login {
-    max-height: 500px; 
+    max-height: 781px; 
     min-width: 555px;
 }
 .form-boundary.add-material, .register .form-boundary {
-    max-height: 706px;
+    /* max-height: 706px; */
     width: auto;
 }
 .table-boundary.history {
@@ -464,7 +470,7 @@ tbody.table-entries tr:nth-child(even) {
 .form-items {
     width: 98%;
     height: 75%;
-    max-height: 73px;
+    max-height: 91px;
     border-radius: 30px;
     box-sizing: border-box;
     padding: 10px;
