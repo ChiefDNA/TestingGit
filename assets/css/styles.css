@@ -130,7 +130,7 @@ a.icon h3 span {
     margin-top: 0px;
 }
 #icon {
-    background: url('/assets/images/logo.png') no-repeat center;
+    background: url('../images/logo.png') no-repeat center;
     background-size: contain;
     height: 58px !important;
     margin: auto;
@@ -191,7 +191,7 @@ a.icon h3 span {
     margin-right: 5px;
     width: 23px;
     height: 28px;
-    background-image: url('/assets/images/web-navigation-icon-pack-vector.png');
+    background-image: url('../images/web-navigation-icon-pack-vector.png');
 }
 #home {
     background-position: -11px -8px;
