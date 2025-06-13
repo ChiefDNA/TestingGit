@@ -164,13 +164,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     const long_inputs = document.querySelectorAll('.form-item.long')
     
     window.addEventListener("resize",()=>{
-      responsiveClasses(short_inputs, 'short', 500, '#registerForm');
-      responsiveClasses(long_inputs, 'long', 500, '#registerForm');
+      responsiveClasses(short_inputs, 'short', 500);
+      responsiveClasses(long_inputs, 'long', 500);
     });
+    responsiveClasses(short_inputs, 'short', 500);
+    responsiveClasses(long_inputs, 'long', 500);
     
-    responsiveClasses(short_inputs, 'short', 500, '#registerForm');
-    responsiveClasses(long_inputs, 'long', 500, '#registerForm');
-
     // field input listeners
     passwordField.addEventListener('input',(e)=>replacement(e,2));
     userfield.addEventListener('input',(e)=>replacement(e,1));
@@ -228,13 +227,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     const long_inputs = document.querySelectorAll('.form-item.long')
     
     window.addEventListener("resize",()=>{
-      responsiveClasses(short_inputs, 'short', 500, '#add-form');
-      responsiveClasses(long_inputs, 'long', 500, '#add-form');
+      responsiveClasses(short_inputs, 'short', 500);
+      responsiveClasses(long_inputs, 'long', 500);
     });
+    responsiveClasses(short_inputs, 'short', 500);
+    responsiveClasses(long_inputs, 'long', 500);
     
-    responsiveClasses(short_inputs, 'short', 500, '#add-form');
-    responsiveClasses(long_inputs, 'long', 500, '#add-form');
-
     let sugest_type = [];
     let sugest_suppier = [];
     input_options(type, type_sugestions, type_btn,sugest_type, 'type');
@@ -318,9 +316,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 
-function responsiveClasses(list, str, number, selector){
-  const container = document.querySelector(selector);
-  if (container.offsetWidth <= number){
+function responsiveClasses(list, str, number){
+  if (window.outerWidth <= number){
     list.forEach(item =>{
       if(item.classList.contains(str)){
         item.classList.remove(str);
