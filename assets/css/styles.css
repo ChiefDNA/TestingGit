@@ -19,6 +19,19 @@ body {
     border-top-left-radius: 26px;
     border-bottom-left-radius: 31px;
     margin: 2px 0 2px 2px;
+    transition: width 1s ease;
+}
+#sidePanel.responsive {
+    min-width: 41px;
+    width: 41px;
+}
+#sidePanel.responsive-focused {
+    position: fixed;
+    background-color: #f1f1f1;
+    z-index: 1;
+}
+.responsive .links-wrap, .responsive .page-icon {
+    width: 100% !important;
 }
 
 #mainPanel {
@@ -124,6 +137,9 @@ a.icon {
 a.icon h3 {
     font-weight: bolder;
 }
+.responsive a.icon h3 {
+    display: none;
+}
 a.icon h3 span {
     font-weight:lighter;
     font-size: smaller;
@@ -138,6 +154,10 @@ a.icon h3 span {
     border-radius: 50%;
     height: 70%;
 }
+.responsive #icon {
+    height: 33px !important;
+    width: 33px;
+}
 .nav-group h5{
     margin-bottom: 0;
     height: 3px;
@@ -145,21 +165,30 @@ a.icon h3 span {
     color: #e9dfdfa1;
     font-size: 13px;
 }
+.responsive .nav-group h5 {
+    display: none;
+}
 .nav-group, .nav-group-title {
     margin: auto 5px;
     width: 168px;
     position: relative;
     justify-self: center;
 }
+.responsive .nav-group, .responsive .nav-group-title {
+    margin: auto auto;
+    width: 100%;
+}
 .nav-group.my-account {
     position: absolute;
     bottom: 10px;
     left: 5px;
 }
+.responsive .nav-group.my-account {
+    left: 0px;
+}
 .nav-group hr {
     width: 80%;
 }
-
 .rout-wrap {
     width: 100%;
     height: 30px;
@@ -179,6 +208,9 @@ a.icon h3 span {
 }
 .rout-wrap a span {
     text-align: left;
+}
+.responsive .rout-wrap a span {
+    display: none;
 }
 
 .rout-wrap:hover, .rout-wrap:active {

@@ -1,5 +1,8 @@
-let UserAccount = {}
-
+let UserAccount = {};
+let responsive = {
+  sidebar: document.querySelector('#sidePanel'),
+  first_load : true
+};
 document.addEventListener("DOMContentLoaded",()=>{
  
   document.querySelector('#sidePanel').innerHTML = `
@@ -164,11 +167,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     const long_inputs = document.querySelectorAll('.form-item.long')
     
     window.addEventListener("resize",()=>{
-      responsiveClasses(short_inputs, 'short', 500);
-      responsiveClasses(long_inputs, 'long', 500);
+      responsiveClasses(short_inputs, 'short', 600);
+      responsiveClasses(long_inputs, 'long', 600);
     });
-    responsiveClasses(short_inputs, 'short', 500);
-    responsiveClasses(long_inputs, 'long', 500);
+    responsiveClasses(short_inputs, 'short', 600);
+    responsiveClasses(long_inputs, 'long', 600);
     
     // field input listeners
     passwordField.addEventListener('input',(e)=>replacement(e,2));
@@ -227,11 +230,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     const long_inputs = document.querySelectorAll('.form-item.long')
     
     window.addEventListener("resize",()=>{
-      responsiveClasses(short_inputs, 'short', 500);
-      responsiveClasses(long_inputs, 'long', 500);
+      responsiveClasses(short_inputs, 'short', 600);
+      responsiveClasses(long_inputs, 'long', 600);
     });
-    responsiveClasses(short_inputs, 'short', 500);
-    responsiveClasses(long_inputs, 'long', 500);
+    responsiveClasses(short_inputs, 'short', 600);
+    responsiveClasses(long_inputs, 'long', 600);
     
     let sugest_type = [];
     let sugest_suppier = [];
@@ -329,6 +332,32 @@ function responsiveClasses(list, str, number){
         item.classList.add(str)
       }
     })
+  }
+
+  if (window.outerWidth <= 800 && !responsive.sidebar.classList.contains('responsive')){
+    responsive.sidebar.classList.add('responsive')
+    if (responsive.first_load){
+      responsive.sidebar.addEventListener('mouseover', switch_class);
+      responsive.sidebar.addEventListener('mouseout', switch_class);
+      responsive.first_load = false;
+    }
+  }else if (window.outerWidth > 800) {
+    if (responsive.sidebar.classList.contains('responsive'))
+      responsive.sidebar.classList.remove('responsive');
+
+    if (responsive.sidebar.classList.contains('responsive-focused'))
+      responsive.sidebar.classList.remove('responsive-focused');
+
+    if(!responsive.first_load){
+      responsive.first_load = true;
+      responsive.sidebar.removeEventListener('mouseout', switch_class);
+      responsive.sidebar.removeEventListener('mouseover', switch_class);
+    }
+
+  }
+  function switch_class(){
+    responsive.sidebar.classList.toggle('responsive')
+    responsive.sidebar.classList.toggle('responsive-focused')
   }
 }
   
